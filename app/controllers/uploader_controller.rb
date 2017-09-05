@@ -1,13 +1,8 @@
-class MainController < ApplicationController
+class UploaderController < ApplicationController
   def index
-    @school = School.find(1)
   end
 
-  def each_univ
-    @university = "北海道科学大学"
-    @department = "工学部"
-    @major = "電気電子工学科"
-    @contents = Content.where(university: @university, department: @department, major: @major)
+  def form
   end
 
   def upload
@@ -22,6 +17,7 @@ class MainController < ApplicationController
         year:2,
         download:@upload_file.file.current_path
     }
+    p @upload_file.file.current_path
     Content.create(content_hash)
   end
 
@@ -31,5 +27,4 @@ class MainController < ApplicationController
     stat = File::stat(filepath)
     send_file(filepath, :filename => @upload_file.file.url.gsub(/.*\//,''), :length => stat.size)
   end
-
 end
