@@ -1,13 +1,12 @@
 class MainController < ApplicationController
   def index
-    @school = School.find(1)
+    @schools = School.select(:university).distinct
+    @content = Content.all
   end
 
   def each_univ
-    @university = "北海道科学大学"
-    @department = "工学部"
-    @major = "電気電子工学科"
-    @contents = Content.where(university: @university, department: @department, major: @major)
+    @university = School.find_by(university: params[:univ])
+    @contents = Content.where(university: @university.university)
   end
 
   def upload

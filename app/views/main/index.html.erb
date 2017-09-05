@@ -4,17 +4,17 @@
 </head>
 <h1>過去問共有</h1>
 
-<h2><%= @university %></h2>
-<br>
-
-<%#<%= form_for '/fileuploads', method: 'post', multipart: true do %>
-
-<%#   	    <%= file_field :fileupload, :file %>
-<%#    <%= submit_tag 'Send file' %>　
-<%#　<% end %>
-
 <% @upload = UploadFile.new %>
 <%= form_for @upload, :url => {:action => :upload} do |f| %>
+
+
+    <select name="a">
+      <%= @schools.each do |school| %>
+        <option value="<% school.university %>"> <%= school.university %>
+        </option>
+      <% end %>
+    </select>
+
     <%= f.label :name, "name" %>
     <%= f.text_field :name %>
     <%= f.label :file %>
@@ -23,10 +23,13 @@
 <% end %>
 
 <h2>新着一覧</h2>
-<% UploadFile.all.reverse_order.each do |upload| %>
-  <li><%= link_to upload.name, action: "download", id: upload.id %>
-<% end %>
-
-<%#<% Content.all.reverse_order.each do |content| %>
-<%#   <li><%= link_to content.lesson, action: "download", id: content.id %>
-<%#<% end %>
+<form action="/main/each_univ" method="get">
+  <select name="univ">
+  <%= @schools.each do |school| %>
+    <option value="<%= school.university %>" > <%= school.university %>
+    </option>
+  <% end %>
+  </select>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" >
+    <input type="submit" value="学部一覧">
+ </form>
