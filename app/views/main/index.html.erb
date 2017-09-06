@@ -91,7 +91,7 @@
         <h2>過去問をアップロードする</h2>
         <% @upload = UploadFile.new %>
         <%= form_for @upload, :url => {:action => :upload} do |f| %>
-          <h3>「大学 / 学部 / 学科 / 学年」を選択</h3>
+
           <select name="university">
             <%= @schools.each do |s| %>
               <option value="<%= s.university %>" class="<%= s.university %>" > <%= s.university %>
@@ -120,8 +120,8 @@
             <option value= "4年">4年</option>
           </select>
           <br>
-          <h3><%= f.label :name, "講義名"  %>　<%= f.text_field :name %></h3>
-          <h3><%= f.label :name, "ファイルを選択" %>　<%= f.file_field :file %></h3>
+            <h3><%= f.label :name, "講義名"  %>　<%= f.text_field :name %>
+          　　<%= f.label :name, "ファイルを選択" %>　<%= f.file_field :file %></h3>
           <%= f.submit "送信" %>
         <% end %>
       </div>
@@ -148,7 +148,7 @@
             <% end %>
           </select>
             <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" >
-            <input type="submit" value="検索">
+            <br><br><input type="submit" value="検索">
          </form>
       </div>
 
