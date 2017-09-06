@@ -4,7 +4,7 @@ class MainController < ApplicationController
     @content = Content.all
     @schools = School.select(:university).distinct
     @departments = School.select(:university, :department).distinct
-    @majors = School.select(:major).distinct
+    @majors = School.select(:department, :major).distinct
   end
 
   def each_univ

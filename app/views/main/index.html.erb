@@ -4,28 +4,45 @@
     <meta charset="utf-8">
     <title>質問共有</title>
     <script type="text/javascript">
-    $(function() {
-        // 大学が選択されたら発動
-        $('select[name="university"]').change(function() {
-            // 選択されている大学のクラス名を取得
-            var unvName = $('select[name="university"] option:selected').attr("class");
-            console.log(unvName);
-            // 学部の要素数を取得
-            var count = $('select[name="department"]').children().length;
-            // 学部の要素数分、for文で回す
-            for (var i=0; i<count; i++) {
-                var unv = $('select[name="depertment"] option:eq(' + i + ')');
-                if(unv.attr("class") === unvName) {
-                    // 選択した大学と同じクラス名だった場合
-                    unv.show();
-                }else {
-                    // 選択した大学とクラス名が違った場合
-                    unv.hide();
-                }
-            }
-        })
-    })
-</script>
+      $(function() {
+          // 大学が選択されたら発動
+          $('select[name="university"]').change(function() {
+              // 選択されている大学のクラス名を取得
+              var unvName = $('select[name="university"] option:selected').attr("class");
+              console.log(unvName);
+              // 学部の要素数を取得
+              var count = $('select[name="department"]').children().length;
+              // 学部の要素数分、for文で回す
+              for (var i=0; i< count; i++) {
+                  console.log("department");
+                  var unv = $('select[name="department"] option:eq(' + i + ')');
+                  if(unv.attr("class") === unvName) {
+                      // 選択した大学と同じクラス名だった場合
+                      unv.show();
+                  }else {
+                      // 選択した大学とクラス名が違った場合
+                      unv.hide();
+                  }
+              }
+          })
+      })
+      $(function() {
+          $('select[name="department"]').change(function() {
+              var derName = $('select[name="department"] option:selected').attr("id");
+              console.log(derName);
+              var counts = $('select[name="major"]').children().length;
+              for (var i=0; i< counts; i++) {
+                  console.log("major");
+                  var dper = $('select[name="major"] option:eq(' + i + ')');
+                  if(dper.attr("class") === derName) {
+                      dper.show();
+                  }else {
+                      dper.hide();
+                  }
+              }
+          })
+      })
+  </script>
   </head>
   <body>
     <header>
@@ -47,14 +64,14 @@
 
           <select name="department">
             <%= @departments.each do |d| %>
-              <option value="<%= d.department %>" class="<%= d.university %>" > <%= d.department %>
+              <option value="<%= d.department %>" class="<%= d.university %>" id="<%= d.department %>" > <%= d.department %>
               </option>
             <% end %>
           </select>
 
           <select name="major">
             <%= @majors.each do |m| %>
-              <option value="<%= m.major %>" > <%= m.major %>
+              <option value="<%= m.major %>" class="<%= m.department  %>" > <%= m.major %>
               </option>
             <% end %>
           </select>
@@ -81,13 +98,13 @@
             </option>
           <% end %>
           </select>
-          <select name="department">
+          <select name="dep">
             <%= @departments.each do |d| %>
               <option value="<%= d.department %>" class="<%= d.university %>" > <%= d.department %>
               </option>
             <% end %>
           </select>
-          <select name="major">
+          <select name="ma">
             <%= @majors.each do |m| %>
               <option value="<%= m.major %>" > <%= m.major %>
               </option>
