@@ -12,11 +12,11 @@ default: &default
 development:
   adapter: mysql2
   encoding: utf8
-  database: share_question
+  database: testdb
   pool: 5
-  username: root
-  pasword:
-  host: localhost
+  username: super
+  password: pass
+  host: 13.113.186.93
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
