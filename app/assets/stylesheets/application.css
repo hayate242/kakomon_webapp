@@ -91,6 +91,8 @@ li {
 .univ_name{
   background-color: #000000;
   color: azure;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .list_flame{
