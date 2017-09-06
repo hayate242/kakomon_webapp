@@ -76,6 +76,6 @@ body{
     float: right;
 }
 
-
-
-
+li {
+  margin-bottom: 20px;
+}

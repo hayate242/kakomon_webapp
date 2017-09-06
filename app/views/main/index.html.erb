@@ -42,6 +42,39 @@
               }
           })
       })
+
+      $(function() {
+          $('select[name="univ"]').change(function() {
+              var unvName = $('select[name="univ"] option:selected').attr("class");
+              console.log(unvName);
+              var count = $('select[name="depa"]').children().length;
+              for (var i=0; i< count; i++) {
+                  console.log("department");
+                  var unv = $('select[name="depa"] option:eq(' + i + ')');
+                  if(unv.attr("class") === unvName) {
+                      unv.show();
+                  }else {
+                      unv.hide();
+                  }
+              }
+          })
+      })
+      $(function() {
+          $('select[name="depa"]').change(function() {
+              var derName = $('select[name="depa"] option:selected').attr("id");
+              console.log(derName);
+              var counts = $('select[name="majo"]').children().length;
+              for (var i=0; i< counts; i++) {
+                  console.log("major");
+                  var dper = $('select[name="majo"] option:eq(' + i + ')');
+                  if(dper.attr("class") === derName) {
+                      dper.show();
+                  }else {
+                      dper.hide();
+                  }
+              }
+          })
+      })
   </script>
     <link rel="stylesheet" type="text/css" href="/assets/stylesheets/application.css">
   </head>
@@ -96,19 +129,19 @@
         <form action="/main/each_univ" method="get">
           <select name="univ">
           <%= @schools.each do |s| %>
-            <option value="<%= s.university %>" > <%= s.university %>
+            <option value="<%= s.university %>" class="<%= s.university %>" > <%= s.university %>
             </option>
           <% end %>
           </select>
-          <select name="dep">
+          <select name="depa">
             <%= @departments.each do |d| %>
-              <option value="<%= d.department %>" class="<%= d.university %>" > <%= d.department %>
+              <option value="<%= d.department %>" class="<%= d.university %>" id="<%= d.department %>" > <%= d.department %>
               </option>
             <% end %>
           </select>
-          <select name="ma">
+          <select name="majo">
             <%= @majors.each do |m| %>
-              <option value="<%= m.major %>" > <%= m.major %>
+              <option value="<%= m.major %>" class="<%= m.department %>" > <%= m.major %>
               </option>
             <% end %>
           </select>
@@ -118,12 +151,18 @@
       </div>
 
       <div class="file_new_tw">
-         <div class="file_new">
-           <h2>新着順</h2>
-         </div>
-         <div class="tw">
-           <h2>ここにTwitterを載せるよ</h2>
-         </div>
+        <div class="file_new">
+          <h2>新着順</h2>
+          <ul>
+            <% @contents.each do |c| %>
+              <li><%= link_to(c.university + "　" + c.department + "　" + c.major + "　" + c.lesson + "　" + c.year.to_s + "年", action: "download", id: c.id) %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="tw">
+          <h2>ここにTwitterを載せるよ</h2>
+          <a class="twitter-timeline" href="https://twitter.com/shippu242">Tweets by shippu242</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
       </div>
 
     </div>

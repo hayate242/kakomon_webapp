@@ -1,15 +1,16 @@
 class MainController < ApplicationController
   def index
-
-    @content = Content.all
+    @contents = Content.last(10)
     @schools = School.select(:university).distinct
     @departments = School.select(:university, :department).distinct
     @majors = School.select(:department, :major).distinct
   end
 
   def each_univ
-    @university = School.find_by(university: params[:univ])
-    @contents = Content.where(university: @university.university)
+    @university = params[:univ]
+    @department = params[:depa]
+    @major = params[:majo]
+    @contents = Content.where(university: @university, department: @department, major: @major)
   end
 
   def upload
