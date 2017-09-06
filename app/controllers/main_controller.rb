@@ -17,11 +17,11 @@ class MainController < ApplicationController
     @upload_file.save
     redirect_to action: 'index'
     content_hash = {
-        university:"garu",
-        department:"yuih",
-        major:"team",
-        lesson:"lab",
-        year:2,
+        university: params[:university],
+        department:params[:department],
+        major: params[:major],
+        lesson: params.require(:upload_file).permit(:name)["name"],
+        year: params[:year],
         download:@upload_file.file.current_path
     }
     Content.create(content_hash)
