@@ -1,7 +1,10 @@
 class MainController < ApplicationController
   def index
-    @schools = School.select(:university).distinct
+
     @content = Content.all
+    @schools = School.select(:university).distinct
+    @departments = School.select(:university, :department).distinct
+    @majors = School.select(:major).distinct
   end
 
   def each_univ

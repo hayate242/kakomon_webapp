@@ -1,35 +1,110 @@
-<head>
-  <title>質問共有</title>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>質問共有</title>
+    <script type="text/javascript">
+    $(function() {
+        // 大学が選択されたら発動
+        $('select[name="university"]').change(function() {
+            // 選択されている大学のクラス名を取得
+            var unvName = $('select[name="university"] option:selected').attr("class");
+            console.log(unvName);
+            // 学部の要素数を取得
+            var count = $('select[name="department"]').children().length;
+            // 学部の要素数分、for文で回す
+            for (var i=0; i<count; i++) {
+                var unv = $('select[name="depertment"] option:eq(' + i + ')');
+                if(unv.attr("class") === unvName) {
+                    // 選択した大学と同じクラス名だった場合
+                    unv.show();
+                }else {
+                    // 選択した大学とクラス名が違った場合
+                    unv.hide();
+                }
+            }
+        })
+    })
+</script>
+  </head>
+  <body>
+    <header>
+      <h1>過去問共有</h1>
+    </header>
 
-</head>
-<h1>過去問共有</h1>
+    <div class="main">
+      <div class="file_up">
+        <h2>過去問をアップロードする</h2>
+        <% @upload = UploadFile.new %>
+        <%= form_for @upload, :url => {:action => :upload} do |f| %>
+          <h3>「大学 / 学部 / 学科 / 学年」を選択</h3>
+          <select name="university">
+            <%= @schools.each do |s| %>
+              <option value="<%= s.university %>" class="<%= s.university %>" > <%= s.university %>
+              </option>
+            <% end %>
+          </select>
 
-<% @upload = UploadFile.new %>
-<%= form_for @upload, :url => {:action => :upload} do |f| %>
+          <select name="department">
+            <%= @departments.each do |d| %>
+              <option value="<%= d.department %>" class="<%= d.university %>" > <%= d.department %>
+              </option>
+            <% end %>
+          </select>
 
+          <select name="major">
+            <%= @majors.each do |m| %>
+              <option value="<%= m.major %>" > <%= m.major %>
+              </option>
+            <% end %>
+          </select>
 
-    <select name="a">
-      <%= @schools.each do |school| %>
-        <option value="<% school.university %>"> <%= school.university %>
-        </option>
-      <% end %>
-    </select>
+          <select name="year">
+            <option value= "1年">1年</option>
+            <option value= "2年">2年</option>
+            <option value= "3年">3年</option>
+            <option value= "4年">4年</option>
+          </select>
+          <br>
+          <h3><%= f.label :name, "講義名"  %>　<%= f.text_field :name %></h3>
+          <h3><%= f.label :name, "ファイルを選択" %>　<%= f.file_field :file %></h3>
+          <%= f.submit "送信" %>
+        <% end %>
+      </div>
 
-    <%= f.label :name, "name" %>
-    <%= f.text_field :name %>
-    <%= f.label :file %>
-    <%= f.file_field :file %>
-    <%= f.submit "Upload" %>
-<% end %>
-
-<h2>新着一覧</h2>
-<form action="/main/each_univ" method="get">
-  <select name="univ">
-  <%= @schools.each do |school| %>
-    <option value="<%= school.university %>" > <%= school.university %>
-    </option>
-  <% end %>
-  </select>
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" >
-    <input type="submit" value="学部一覧">
- </form>
+      <div class="file_search">
+        <h2>過去問を検索する</h2>
+        <form action="/main/each_univ" method="get">
+          <select name="univ">
+          <%= @schools.each do |s| %>
+            <option value="<%= s.university %>" > <%= s.university %>
+            </option>
+          <% end %>
+          </select>
+          <select name="department">
+            <%= @departments.each do |d| %>
+              <option value="<%= d.department %>" class="<%= d.university %>" > <%= d.department %>
+              </option>
+            <% end %>
+          </select>
+          <select name="major">
+            <%= @majors.each do |m| %>
+              <option value="<%= m.major %>" > <%= m.major %>
+              </option>
+            <% end %>
+          </select>
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" >
+            <input type="submit" value="検索">
+         </form>
+      </div>
+      <div class="file_new_tw">
+        <div class="file_new">
+          <h2>新着順</h2>
+        </div>
+        <div class="tw">
+          <h2>ここにTwitterを載せるよ</h2>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
