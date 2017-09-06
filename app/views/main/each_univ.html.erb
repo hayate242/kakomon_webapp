@@ -21,7 +21,7 @@
 
     <div class="list_flame">
       <ul>
-        <% @contents.each do |content| %>
+        <% @contents.reverse.each do |content| %>
         <li><%= link_to(content.lesson + " " + content.year.to_s + "年", action: "download", id: content.id) %>
         <% end %>
       </ul>

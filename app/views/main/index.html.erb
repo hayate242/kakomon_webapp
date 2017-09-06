@@ -161,7 +161,7 @@
         <div class="file_new">
           <h2>新着順</h2>
           <ul>
-            <% @contents.each do |c| %>
+            <% @contents.reverse.each do |c| %>
                 <li><%= link_to(c.university + "　" + c.department + "　" + c.major + "　" + c.lesson + "　" + c.year.to_s + "年", action: "download", id: c.id) %></li>
             <% end %>
           </ul>
