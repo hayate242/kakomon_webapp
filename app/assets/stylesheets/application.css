@@ -87,3 +87,12 @@ body{
 li {
   margin-bottom: 20px;
 }
+
+.univ_name{
+  background-color: #000000;
+  color: azure;
+}
+
+.list_flame{
+  border: solid;
+}
