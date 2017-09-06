@@ -8,25 +8,22 @@
     <header>
       <div class="title">
         <h1>過去問共有</h1>
+        <p>クリックしたらダウンロードが開始されます</p>
       </div>
     </header>
 
   <div class="main_flame">
 
     <div class="univ_flame">
-      <div class="title_flame">
-        <h2>過去問一覧</h2>
-      </div>
-
       <div class="univ_name">
-        <h3><%= @university.university %></h3>
+        <h3><%= @university + "　　" + @department + "　　" + @major %></h3>
       </div>
     </div>
 
     <div class="list_flame">
       <ul>
         <% @contents.each do |content| %>
-        <li><%= link_to(content.department + " " + content.major + " " + content.lesson + " " + content.year.to_s + "年", action: "download", id: content.id) %>
+        <li><%= link_to(content.lesson + " " + content.year.to_s + "年", action: "download", id: content.id) %>
         <% end %>
       </ul>
     </div>
