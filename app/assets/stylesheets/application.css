@@ -17,7 +17,7 @@
 .header{
     text-align: center;
     background-color: #000000;
-
+    height: 150px;
 }
 
 body{
@@ -30,7 +30,8 @@ body{
     border: solid ;
     border-color: #000000;
     border-width: 15px;
-    font-size: 20px;
+    font-size: 90px;
+    padding-left:80px ;
    /* border-radius: 169px; */
 }
 
@@ -44,19 +45,23 @@ body{
     position: relative;
     border: solid;
     margin-top: 20px;
+    padding: 20px;
 }
 
 .file_search{
     border: solid;
     margin-top: 20px;
     position: relative;
+    padding: 20px;
 }
 
 .file_new_tw{
     margin-top: 20px;
     position: relative;
     border: solid;
-    clear:both
+    clear:both;
+    padding: 15px;
+    height: 690px;
 }
 
 .tw{
@@ -64,16 +69,19 @@ body{
     position: relative;
     width: 400px;
     height: 100px;
-
-
+    padding: 20px;
+    height: 600px;
+    float: right;
 }
 
 .file_new{
     position: relative;
     border: solid;
-    width: 400px;
+    width: 680px;
     height: 100px;
-    float: right;
+
+    padding: 20px;
+    height: 600px;
 }
 
 li {

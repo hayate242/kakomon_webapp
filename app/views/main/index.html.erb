@@ -80,11 +80,13 @@
   </head>
   <body>
   <div class="page">
+
     <header class="header">
       <h1 class="title">カコモン共有</h1>
     </header>
 
     <div class="main">
+
       <div class="file_up">
         <h2>過去問をアップロードする</h2>
         <% @upload = UploadFile.new %>
@@ -151,18 +153,20 @@
       </div>
 
       <div class="file_new_tw">
+
+        <div class="tw">
+          <h2>Twitter</h2>
+          <a class="twitter-timeline" href="https://twitter.com/shippu242" data-width="500" data-height="500" data-chrome="noheader nofooter">Tweets by shippu242</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
         <div class="file_new">
           <h2>新着順</h2>
           <ul>
             <% @contents.each do |c| %>
-              <li><%= link_to(c.university + "　" + c.department + "　" + c.major + "　" + c.lesson + "　" + c.year.to_s + "年", action: "download", id: c.id) %></li>
+                <li><%= link_to(c.university + "　" + c.department + "　" + c.major + "　" + c.lesson + "　" + c.year.to_s + "年", action: "download", id: c.id) %></li>
             <% end %>
           </ul>
         </div>
-        <div class="tw">
-          <h2>ここにTwitterを載せるよ</h2>
-          <a class="twitter-timeline" href="https://twitter.com/shippu242">Tweets by shippu242</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
+
       </div>
 
     </div>
