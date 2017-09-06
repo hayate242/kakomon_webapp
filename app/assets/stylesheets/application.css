@@ -40,6 +40,7 @@ body{
     margin-left : 80px ;
     margin-right : 80px ;
     margin-top:50px;
+    margin-bottom: 50px;
 }
 .file_up{
     position: relative;
@@ -61,7 +62,8 @@ body{
     border: solid;
     clear:both;
     padding: 15px;
-    height: 690px;
+    height: 650px;
+
 }
 
 .tw{
