@@ -10,15 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20170905053549) do
 
-  create_table "files", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "contents", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "university", limit: 100, comment: "大学名"
+    t.string "department", limit: 100
+    t.string "major", limit: 100, comment: "学部"
+    t.string "lesson", limit: 100, comment: "講義"
+    t.integer "year", comment: "学年"
+    t.string "download"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schools", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "university", limit: 100
     t.string "department", limit: 100
     t.string "major", limit: 100
-    t.string "lesson", limit: 100
-    t.integer "year"
-    t.binary "file"
+  end
+
+  create_table "upload_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
